@@ -1,8 +1,11 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import { PokemonContextData } from './stateManagement/PokemonContextData';
 import {fetchPokemonList} from './api/pokemon/pokemon.query';
 import Header from './components/header/Header';
+import { MantineProvider } from '@mantine/core';
+import { BrowserRouter } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import '@mantine/core/styles.css';
 
 const App = ()=>{
   
@@ -12,9 +15,13 @@ const App = ()=>{
   })
 
   return (
-    <PokemonContextData.Provider value={{pokemonList}}>
-      <Header/>
-    </PokemonContextData.Provider>
+    <MantineProvider>
+      <BrowserRouter>
+        <PokemonContextData.Provider value={{pokemonList}}>
+          <Header/>
+        </PokemonContextData.Provider>
+      </BrowserRouter>
+    </MantineProvider>
   )
 }
 

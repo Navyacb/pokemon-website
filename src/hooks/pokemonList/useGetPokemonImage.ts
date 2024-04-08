@@ -6,9 +6,9 @@ export const useGetPokemonImage = (pokemonList?: IPokemonList[], currentPage: nu
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = Math.min(startIndex + itemsPerPage, pokemonList?.length || 0)
-  const limitedPokemonList = pokemonList?.slice(startIndex, endIndex)
+  const limitedPokemonList = pokemonList?.slice(startIndex, endIndex)??[]
 
-  const { data: imageData } = useQuery({
+  const { data: imageData ,isLoading } = useQuery({
     queryKey: limitedPokemonList?.map((pokemon: IPokemonList) => ['pokemonImage', pokemon.url]), 
     queryFn: async () => {
       const imagePromises = limitedPokemonList?.map((pokemon: IPokemonList) => fetching(pokemon.url)) ?? []
@@ -24,6 +24,6 @@ export const useGetPokemonImage = (pokemonList?: IPokemonList[], currentPage: nu
     enabled: limitedPokemonList !== undefined && limitedPokemonList.length > 0 ,
   })
 
-  return { imageData }
+  return { imageData ,isLoading}
 }
 

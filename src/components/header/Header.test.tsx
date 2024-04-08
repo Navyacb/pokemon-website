@@ -6,4 +6,4 @@ describe('header test',()=>{
         const {getByRole} = render(<Header/>)
         expect(getByRole('heading', {  name: /pokemon/i}))
     })
-})
+});

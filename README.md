@@ -1,5 +1,5 @@
 Pokemon website:
-This Repo contains the front end code for listing the pokemon, searching , filter using category/types and view basic details of pokemon.
+This Repo contains the front end code for listing the pokemon, searching , filter using category/types and search from filtered list. you can also view basic details of pokemon.
 
 Development Setup:
 
@@ -14,9 +14,9 @@ Tech Stack Used : React+Vite+Typescript , Mantine, React-query, axios , React-Ap
 
 Folder Structure:
 Src=>
-    1. api : This folder is used to sore the api calls details and few api mock data.
-    2. components: This folder contains all the components jsx and corresponding test files.
-    3. hooks: This folder contains the custom hooks created.
-    4. stateManagement : This folder contains the state details.
-    5. util: This folder contains details of the test setup.
+1. api : This folder is used to sore the api calls details and few api mock data.
+2. components: This folder contains all the components jsx and corresponding test files.
+3. hooks: This folder contains the custom hooks created.
+4. stateManagement : This folder contains the state details.
+5. util: This folder contains details of the test setup.
 

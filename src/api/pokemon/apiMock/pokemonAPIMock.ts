@@ -105,6 +105,25 @@ const fetchSelectedPokemonListMock = [
     })
 ];
 
+const fetchSelectedPokemonList2Mock = [
+    rest.get(`https://pokeapi.co/api/v2/type/poison`, (_req, res, ctx) => {
+      return res(
+        ctx.status(200),
+  
+        ctx.json( {
+            "pokemon": [
+                {
+                    "pokemon": {
+                        "name": "charmander",
+                        "url": "https://pokeapi.co/api/v2/pokemon/4/"
+                    }
+                }
+            ]}
+        )
+      );
+    })
+];
+
 const fetchPokemonImage1Mock = [
     rest.get(`https://pokeapi.co/api/v2/pokemon/1/`, (_req, res, ctx) => {
       return res(
@@ -242,6 +261,7 @@ const fetchPokemonImage4Mock = [
     })
 ];
 
+
 export const fetchPokemonImageMock = [
     ...fetchPokemonImage1Mock,
     ...fetchPokemonImage2Mock,
@@ -253,5 +273,6 @@ export const pokemonAPIMock = [
     ...fetchCategoryDataMock,
     ...fetchPokemonListMock,
     ...fetchSelectedPokemonListMock,
+    ...fetchSelectedPokemonList2Mock,
     ...fetchPokemonImageMock
 ]

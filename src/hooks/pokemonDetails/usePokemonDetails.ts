@@ -5,13 +5,15 @@ import { fetchDetails } from "../../api/pokemon/pokemon.query"
 export const usePokemonDetails = ()=>{
     const { name } = useParams()
 
-    const{data:pokemonDetail} = useQuery({
+    const{data:pokemonDetail,isFetching} = useQuery({
         queryFn: ()=>fetchDetails(name?name:''),
         queryKey: ['pokemonDetail']
     })
+    
+    interface IStatType {base_stat:number,effort:number,stat:{name:string,url:string}}
 
-    const statLabels = pokemonDetail?.stats?.map((stat:any) => stat.stat.name)
-    const statValues = pokemonDetail?.stats?.map((stat:any) => stat.base_stat)
+    const statLabels = pokemonDetail?.stats?.map((stat:IStatType) => stat.stat.name)
+    const statValues = pokemonDetail?.stats?.map((stat:IStatType) => stat.base_stat)
 
     const state = {
         options : {
@@ -35,7 +37,7 @@ export const usePokemonDetails = ()=>{
     const weight = pokemonDetail?.weight
     const abilities = pokemonDetail?.abilities
     const types = pokemonDetail?.types
-    const image = pokemonDetail?.sprites?.other?.showdown.front_default
+    const image = pokemonDetail?.sprites?.other?.showdown?.front_default
 
     return {
         name,
@@ -44,7 +46,8 @@ export const usePokemonDetails = ()=>{
         weight,
         abilities,
         types,
-        image
+        image,
+        isFetching
     }
 
 }
