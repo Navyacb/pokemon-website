@@ -2,6 +2,7 @@ import { Text, SimpleGrid, Card, CardSection, Image, Center, Pagination } from "
 import { IPokemonList } from "../../stateManagement/PokemonContextData";
 import { useGetPokemonImage } from "../../hooks/pokemonList/useGetPokemonImage";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const PokemonList = ({pokemonList}:any)=>{
     const [currentPage, setCurrentPage] = useState(1)
@@ -30,18 +31,22 @@ const PokemonList = ({pokemonList}:any)=>{
                 currentPokemonList?.map((data:IPokemonList,index:number)=>{
 
                     return(
-                            <Card
+                            <Link to={`/pokemon/${data.name}`}
+                            key={index}
+                            className="textDecoration"
+                            >
+                                <Card
                                 p="md"  
                                 shadow="md" 
                                 withBorder 
-                                key={index}
                                 className="hover"
-                            >
-                                <CardSection>
-                                    <Image src={imageData?imageData[data.name]:''} fit="cover"/>
-                                </CardSection>
-                                <Center><Text size="lg" fw={500}>{data.name.toUpperCase()}</Text></Center>
-                            </Card>
+                                >
+                                    <CardSection>
+                                        <Image src={imageData?imageData[data.name]:''} fit="cover"/>
+                                    </CardSection>
+                                    <Center><Text size="lg" fw={500}>{data.name.toUpperCase()}</Text></Center>
+                                </Card>
+                            </Link>
                         )
                     })
             }
@@ -58,4 +63,4 @@ const PokemonList = ({pokemonList}:any)=>{
     )
 }
 
-export default PokemonList
+export default PokemonList;

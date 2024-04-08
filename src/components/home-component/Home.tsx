@@ -1,54 +1,19 @@
 import { Box, Stack,rem, TextInput, Group, MultiSelect, Text } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import { ChangeEvent, useContext, useState } from "react";
-import { IPokemonList, PokemonContextData } from "../../stateManagement/PokemonContextData";
 import PokemonList from "../pokemonList-component/PokemonList";
-import { useQuery } from "react-query";
-import {fetchCategoryData, fetchSelectedPokemonList} from '../../api/pokemon/pokemon.query';
-import { useIntersect } from "../../hooks/home/useIntersect";
+import {useHome} from "../../hooks/home/useHome";
 
 const Home = ()=>{
 
-    const {pokemonList} = useContext(PokemonContextData)
-    const [searchText,setSearchText] = useState('')
-    const [searchedPokemonList,setSearchedPokemonList] = useState<IPokemonList[]>([])
-    const [selectedValues,setSelectedValues] = useState<string[]>([])
-    const [selectedPokemonList,setSelectedPokemonList] = useState<IPokemonList[]>([])
-    const [error, setError] = useState(false)
-
-    const handleChange = (e:ChangeEvent<HTMLInputElement>)=>{
-        setSearchText(e.target.value)
-        const list = selectedPokemonList.length>0 ? selectedPokemonList : pokemonList
-        const filteredList = list.filter(pokemon => 
-            pokemon.name.toLowerCase().includes(e.target.value.toLowerCase())
-        )
-        setSearchedPokemonList(filteredList)
-        setError(e.target.value.length > 0 && filteredList.length === 0);
-    }
-
-    const handleSelect = async (values: string[]) => {
-        setSelectedValues(values)
-        if (values.length > 0) {
-          const promises = values.map((value) => fetchSelectedPokemonList(value.toLowerCase()))
-          const pokemonLists = await Promise.all(promises)
-          const mergedPokemonList = useIntersect(pokemonLists)
-          setSelectedPokemonList(mergedPokemonList)
-          setError(mergedPokemonList.length===0)
-        } else {
-          setSelectedPokemonList([])
-          setError(false)
-        }
-      }
-
-    const {data:categoryData} = useQuery({
-        queryFn : ()=>fetchCategoryData(),
-        queryKey : ["categoryData"],
-      })
-
-      const displayedList = searchText.length > 0 ? 
-                            searchedPokemonList : 
-                            selectedPokemonList.length > 0 ? 
-                            selectedPokemonList : pokemonList
+    const {
+        searchText,
+        handleChange,
+        handleSelect,
+        categoryData,
+        displayedList,
+        selectedValues,
+        error
+    } = useHome()
 
     return(
         <Stack>
@@ -91,4 +56,4 @@ const Home = ()=>{
     )
 }
 
-export default Home
+export default Home;

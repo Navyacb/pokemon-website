@@ -1,12 +1,8 @@
-import axios from "axios";
 import { useQuery } from "react-query";
 import { IPokemonList } from "../../stateManagement/PokemonContextData";
+import { fetching } from "../../api/pokemon/pokemon.query";
 
 export const useGetPokemonImage = (pokemonList?: IPokemonList[], currentPage: number = 1, itemsPerPage: number = 20) => {
-  const fetching = async (url: string) => {
-    const response = await axios.get(url)
-    return response.data.sprites.other.home.front_default
-  };
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = Math.min(startIndex + itemsPerPage, pokemonList?.length || 0)

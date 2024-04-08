@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
@@ -11,7 +10,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./setupTests.ts', './src/util/Mock/matchMedia.ts', './src/util/Mock/resizeObserver.ts'],
+    setupFiles: ['./setupTests.ts', './util/MocksTest/matchMedia.ts', './util/MocksTest/resizeObserver.ts'],
     exclude: ["dist/*", ".turbo/*", "node_modules/*"],
     include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     coverage: {

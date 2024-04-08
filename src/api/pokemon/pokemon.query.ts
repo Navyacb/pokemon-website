@@ -22,3 +22,13 @@ export const fetchSelectedPokemonList = async (value: string) => {
     const data = response.data.pokemon.map((pokemon: { pokemon: IPokemonList }) => pokemon.pokemon)
     return data
 }
+
+export const fetchDetails = async(name:string)=>{
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    return response.data
+}
+
+export const fetching = async (url: string) => {
+    const response = await axios.get(url)
+    return response?.data?.sprites?.other?.home?.front_default
+}

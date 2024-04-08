@@ -1,0 +1,6 @@
+.hover:hover {
+    transform: scale(1.05);
+}
+.textDecoration{
+    text-decoration: none;
+}
