@@ -1,4 +1,3 @@
-import React from 'react';
 import { PokemonContextData } from './stateManagement/PokemonContextData';
 import {fetchPokemonList} from './api/pokemon/pokemon.query';
 import Header from './components/header/Header';

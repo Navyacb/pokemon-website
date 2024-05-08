@@ -1,4 +1,3 @@
-import React from 'react'
 import { MantineProvider } from '@mantine/core';
 import {QueryClient, QueryClientProvider } from 'react-query';
 import { FC, ReactNode } from 'react';
